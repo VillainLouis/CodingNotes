@@ -93,6 +93,44 @@ struct ListNode {
 			val(x), next(NULL) {
 	}
 };*/
+#include <type_traits>
+class Solution {
+public:
+    ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
+        int n1 = 0;
+		ListNode *p1 = pHead1;
+		while (p1) { ++n1; p1 = p1->next; }
+		int n2 = 0;
+		ListNode *p2 = pHead2;
+		while (p2) { ++n2; p2 = p2->next; }
+		p1= pHead1;
+		p2 = pHead2;
+		if (n1 < n2) {
+			swap(n1, n2);
+			swap(p1, p2);
+		}
+		for (int i = 0; i < n1 - n2; ++i) {
+			p1 = p1->next;
+		}
+		while (p1 != p2) {
+			p1 = p1->next;
+			p2 = p2->next;
+		}
+		return p1;
+    }
+};
+
+```
+
+```C++
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
 class Solution {
 public:
     ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
